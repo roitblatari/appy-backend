@@ -6,14 +6,18 @@ class  Api::V1::DeedsController < ApplicationController
     @deeds = Deed.all
 
     # render json: @deeds
-    render json: @deeds, status: 200
+    # render json: @deeds, status: 200
+    json_deeds = DeedSerializer.new(@deeds).serialized_json
+    render json: json_deeds
   end
 
   # GET /deeds/1
   def show
     # render json: @deed
     @deed = Deed.find(params[:id])
-    render json: @deed, status: 200
+    # render json: @deed, status: 200
+    json_deed = DeedSerializer.new(@deed).serialized_json
+    render json: json_deed
   end
 
   # POST /deeds
