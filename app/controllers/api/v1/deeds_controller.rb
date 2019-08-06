@@ -1,4 +1,4 @@
-class  Api::V1::DeedsController < ApplicationController
+class Api::V1::DeedsController < ApplicationController
   before_action :set_deed, only: [:show, :update, :destroy]
 
   # GET /deeds
