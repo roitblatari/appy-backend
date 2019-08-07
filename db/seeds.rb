@@ -13,4 +13,4 @@ sholom = User.create(username: "sholom", email: "sholom@gmail", password: "123",
 
 deed_one = Deed.create(title: "Charity", giver_id: "1", receiver_id: user_3.id ,content: "paid his rent", image_url: "#") 
 deed2 = user_two.given_deeds.create(title: "heiping hand",receiver_id: "3", content: "I carry his bags", image_url: "#")
-deed3 = sholom.given_deeds.create(title: "heiping hand",receiver_id: "4", content: "I carry his bags", image_url: "#")
+deed3 = sholom.given_deeds.create(title: "helping hand",receiver_id: "4", content: "I carry his bags", image_url: "#")
