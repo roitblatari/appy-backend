@@ -36,6 +36,11 @@ the ripple effect)
 
 
 # Todo
-- check models
-- serializer
-- create react app
+- check models -
+- serializer -
+- create react app 
+- delete session
+- sign up
+- user show page
+- deed form
+
