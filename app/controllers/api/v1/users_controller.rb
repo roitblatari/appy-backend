@@ -19,9 +19,10 @@ render json: json_users
   # POST /users
   def create
     @user = User.new(user_params)
-
+ binding.pry
     if @user.save
-      render json: @user, status: :created, location: @user
+      session[:user_id] = @user.id
+      render json: UserSerializer.new(@user), status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -49,6 +50,6 @@ render json: json_users
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :email, :password_digest, :image_url)
+      params.require(:user).permit(:username, :email, :password, :image_url)
     end
 end
