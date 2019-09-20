@@ -7,5 +7,30 @@ class UserSerializer #< ActiveModel::Serializer
   # has_many :givers, through: :given_deeds
   # has_many :receivers, through: :received_deeds
 
-  attributes :id, :username, :email, :image_url, :givers, :receivers, :given_deeds 
+  attributes :id, :username, :email, :image_url,  :given_deeds #, :givers, :receivers
+  #  has_many :receivers, serializer: UserSerializer
+
+attribute :my_givers do |user|
+   user.givers.map do |giver|
+    {
+      id: giver.id,
+      username: giver.username,
+      email: giver.email,
+      image_url: giver.image_url
+    }
+    end  
+  end
+
+
+  attribute :my_receivers do |user|
+   user.receivers.map do |receiver|
+    {
+      id: receiver.id,
+      username: receiver.username,
+      email: receiver.email,
+      image_url: receiver.image_url
+    }
+    end  
+  end
+
 end
