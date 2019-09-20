@@ -4,11 +4,16 @@ class Api::V1::DeedsController < ApplicationController
   # GET /deeds
   def index
     @deeds = Deed.all
-
+    @current_user_deeds = @deeds.find_all do |d|
+      d.giver_id.to_i == current_user.id.to_i
+    end
+# @deeds.find_all {|d| d.giver_id == current_user.id}
     # render json: @deeds
     # render json: @deeds, status: 200
-    json_deeds = DeedSerializer.new(@deeds).serialized_json
-    render json: json_deeds
+    # binding.pry
+
+    json_deeds = DeedSerializer.new(@current_user_deeds).serialized_json
+    render json: json_deeds,  status: 200
   end
 
   # GET /deeds/1
