@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :receivers, through: :given_deeds
   has_many :givers, through: :received_deeds
 
+  validates :email, uniqueness: true
+
   has_secure_password
 
 end
