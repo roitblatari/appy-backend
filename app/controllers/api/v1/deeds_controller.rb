@@ -27,14 +27,26 @@ class Api::V1::DeedsController < ApplicationController
 
   # POST /deeds
   def create
-    @deed = Deed.new(deed_params)
 
-    if @deed.save
-      render json: @deed, status: :created, location: @deed
+     @deed = Deed.new(deed_params)
+     @deed.receiver_id = current_user.id.to_i
+#  binding.pry
+    if @deed.save 
+
+      render json: {notice: "success"}, status: :ok
     else
       render json: @deed.errors, status: :unprocessable_entity
     end
+    # @deed = Deed.new(deed_params)
+
+    # if @deed.save
+    #   render json: @deed, status: :created, location: @deed
+    # else
+    #   render json: @deed.errors, status: :unprocessable_entity
+    # end
   end
+
+  
 
   # PATCH/PUT /deeds/1
   def update
@@ -47,7 +59,9 @@ class Api::V1::DeedsController < ApplicationController
 
   # DELETE /deeds/1
   def destroy
+    deedId = @deed.id
     @deed.destroy
+    render json: deedId
   end
 
   private
@@ -58,6 +72,6 @@ class Api::V1::DeedsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def deed_params
-      params.require(:deed).permit(:title, :user_giver_id, :user_receiver_id, :content, :image_url)
+      params.require(:deed).permit(:title, :giver_id, :receiver_id, :content, :image_url)
     end
 end
