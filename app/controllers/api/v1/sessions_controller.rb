@@ -2,7 +2,7 @@ class Api::V1::SessionsController < ApplicationController
   # def new
   # end
    def create
-    binding.pry 
+    # binding.pry 
     @user = User.find_by(username: params[:session][:username])
 
     if @user && @user.authenticate(params[:session][:password])

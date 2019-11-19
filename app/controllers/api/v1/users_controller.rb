@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-json_users = UserSerializer.new(@users).serialized_json
-render json: json_users
+    json_users = UserSerializer.new(@users).serialized_json
+    render json: json_users
     # render json: @users
   end
 
@@ -19,7 +19,7 @@ render json: json_users
   # POST /users
   def create
     @user = User.new(user_params)
- binding.pry
+#  binding.pry
     if @user.save
       session[:user_id] = @user.id
       render json: UserSerializer.new(@user), status: :ok
