@@ -28,19 +28,9 @@ the ripple effect)
 
 
 ## Deed
--  "deedname": string
-- "content": string
-- giver_id: string
-- receiver_id: string
-#### belongs_to :user
+
 
 
 # Todo
-- check models -
-- serializer -
-- create react app -
-- delete session -
-- sign up -
-- user show page
-- deed form
+
 
