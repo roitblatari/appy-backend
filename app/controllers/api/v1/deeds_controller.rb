@@ -3,16 +3,16 @@ class Api::V1::DeedsController < ApplicationController
 
   # GET /deeds
   def index
-    @deeds = Deed.all
-    @current_user_deeds = @deeds.find_all do |d|
-      d.giver_id.to_i == current_user.id.to_i
-    end
-# @deeds.find_all {|d| d.giver_id == current_user.id}
-    # render json: @deeds
-    # render json: @deeds, status: 200
-    # binding.pry
-
+    # @deeds = Deed.all
+    @deeds = Deed.display_deeds
+  #  binding.pry
+    # @current_user_deeds = @deeds.find_all do |d|
+    #   d.giver_id.to_i == current_user.id.to_i
+    # end
+    @current_user_deeds = @deeds.where giver_id: current_user.id.to_s
+   
     json_deeds = DeedSerializer.new(@current_user_deeds).serialized_json
+    #  binding.pry
     render json: json_deeds,  status: 200
   end
 
@@ -37,13 +37,7 @@ class Api::V1::DeedsController < ApplicationController
     else
       render json: @deed.errors, status: :unprocessable_entity
     end
-    # @deed = Deed.new(deed_params)
-
-    # if @deed.save
-    #   render json: @deed, status: :created, location: @deed
-    # else
-    #   render json: @deed.errors, status: :unprocessable_entity
-    # end
+ 
   end
 
   
