@@ -17,6 +17,12 @@ the ripple effect)
 # Models
 
 ## User
+
+Points based on deeds 
+
+
+
+
 - "username": string
 - "uid": string
 - "email": email
@@ -29,7 +35,7 @@ the ripple effect)
 
 ## Deed
 
-
+select userId
 
 # Todo
 
